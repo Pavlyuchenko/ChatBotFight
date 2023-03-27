@@ -1,15 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-// fetch data from http://127.0.0.1:5000
-/* fetch("http://127.0.0.1:5000/get_prompt")
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data);
-    }); */
-const response = await fetch("http://127.0.0.1:5000/get_prompt");
-const data = await response.json();
-console.log(data);
+//const response = await fetch("http://127.0.0.1:5000/get_prompt");
+//const data = await response.json();
+
+const data = {
+    prompt: "Random prompt",
+    ChatGPT: "ChatGPT's response",
+    BARD: "BARD's response",
+};
 ---
 
 <script is:inline>
