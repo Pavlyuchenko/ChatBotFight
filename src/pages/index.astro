@@ -1,0 +1,119 @@
+---
+import Tooltip from "../components/Tooltip.svelte";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="BeepBeep | ChatBotFight">
+    <main>
+        <img src="gpt_vs_bard.png" alt="ChatGPT vs Bard" />
+        <div class="hider-1">
+            <h1>Which AI model wrote which response?</h1>
+        </div>
+        <div class="hider-2">
+            <p>
+                Guess which AI model generated the response to a given prompt.
+                <br />
+                Show the world how ChatBot-savvy you truly are!
+            </p>
+        </div>
+
+        <div class="hider-3">
+            <div class="flex">
+                <a href="/guess" class="primary-button">
+                    Play Guess<Tooltip
+                        text={"Guess which chatbot generated the response!"}
+                        client:visible
+                    />
+                </a>
+                <a href="/guess" class="primary-button">
+                    Play Rate<Tooltip
+                        text={"Rate which chatbot generated better response!"}
+                        client:visible
+                    />
+                </a>
+            </div>
+        </div>
+    </main>
+</Layout>
+<section>
+    Test <br /> Test <br /> Test <br />Test <br /> Test <br /> Test <br /> Test v
+</section>
+
+<style>
+    :root {
+        --animation-speed: 0.08s;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        flex: 1;
+        margin-bottom: 100px;
+    }
+
+    img {
+        animation: fadeIn 0.5s cubic-bezier(0.23, 0.03, 0, 1.46);
+    }
+
+    .hider-1 {
+        animation: hide var(--animation-speed);
+    }
+    .hider-2 {
+        animation: hide calc(2 * var(--animation-speed));
+    }
+    .hider-3 {
+        animation: hide calc(3 * var(--animation-speed));
+    }
+    @keyframes hide {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    h1 {
+        font-size: 40px;
+
+        margin-bottom: 0;
+        margin-top: 60px;
+
+        animation: fadeIn 0.5s cubic-bezier(0.23, 0.03, 0, 1.46)
+            var(--animation-speed);
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(35px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    p {
+        text-align: center;
+        font-size: 24px;
+
+        line-height: 1.35;
+        animation: fadeIn 0.5s cubic-bezier(0.23, 0.03, 0, 1.46)
+            calc(2 * var(--animation-speed));
+    }
+
+    .flex {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+
+        animation: fadeIn 0.5s cubic-bezier(0.23, 0.03, 0, 1.46)
+            calc(3 * var(--animation-speed));
+    }
+</style>
