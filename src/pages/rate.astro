@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 const randomNumber = Math.round(Math.random() * 1000000);
 
 const response = await fetch(
-    "https://ChatBotFight.pythonanywhere.com/get_prompt/1?" + randomNumber
+    "https://ChatBotFight.pythonanywhere.com/get_prompt/1?rand=" + randomNumber
 );
 const data = await response.json();
 ---
