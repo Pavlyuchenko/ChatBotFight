@@ -1,13 +1,36 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-const response = await fetch(
-    "https://ChatBotFight.pythonanywhere.com/get_prompt/1"
-);
-const data = await response.json();
 ---
 
 <script is:inline>
+    var data;
+
+    async function getPrompt() {
+        const response = await fetch(
+            "https://ChatBotFight.pythonanywhere.com/get_prompt/1",
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+                    "Access-Control-Allow-Headers":
+                        "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
+                    mode: "no-cors",
+                },
+            }
+        );
+
+        data = await response.json();
+
+        document.getElementById("prompt-text").innerHTML = data["prompt"];
+        document.getElementById("chatgpt-answer-data").innerHTML =
+            data["ChatGPT"];
+        document.getElementById("bard-answer-data").innerHTML = data["BARD"];
+    }
+
+    getPrompt();
+
     var switcherinho = false;
 
     window.onload = () => {
@@ -88,12 +111,8 @@ const data = await response.json();
         document.getElementsByClassName("bot-logo")[0].style.display = "block";
         document.getElementsByClassName("bot-logo")[1].style.display = "block";
 
-        let chatGPTVotes = parseInt(
-            document.querySelector("main").dataset.chatgptvotes
-        );
-        let bardVotes = parseInt(
-            document.querySelector("main").dataset.bardvotes
-        );
+        let chatGPTVotes = parseInt(data.votesChatGPT);
+        let bardVotes = parseInt(data.votesBard);
 
         if (switcherinho) {
             if (leftClicked) {
@@ -140,7 +159,7 @@ const data = await response.json();
 
         document.getElementById("next-button").style.display = "block";
 
-        id = document.querySelector("main").dataset.id;
+        id = data.id;
         const model = switcherinho ? "BARD" : "ChatGPT";
 
         fetch("https://ChatBotFight.pythonanywhere.com/add_vote/" + id, {
@@ -161,18 +180,12 @@ const data = await response.json();
 </script>
 
 <Layout title="Guess the Chatbot | ChatBotFight">
-    <main
-        data-id={data.id}
-        data-bardvotes={data.votesBard}
-        data-chatgptvotes={data.votesChatGPT}
-    >
+    <main>
         <p class="explanation-text">The Prompt</p>
-        <h2 id="prompt-text">
-            “{data.prompt}”
-        </h2>
+        <h2 id="prompt-text"></h2>
         <section id="bot-answers">
             <div class="answers">
-                <div class="answer-text">{data.ChatGPT}</div>
+                <div class="answer-text" id="chatgpt-answer-data"></div>
                 <button class="choose-button" onclick="optionClicked(true)">
                     This one is better
                 </button>
@@ -194,7 +207,7 @@ const data = await response.json();
                 <p class="percentage" id="percentage-left"></p>
             </div>
             <div class="answers">
-                <div class="answer-text">{data.BARD}</div>
+                <div class="answer-text" id="bard-answer-data"></div>
                 <button
                     class="choose-button"
                     id="red-button"
