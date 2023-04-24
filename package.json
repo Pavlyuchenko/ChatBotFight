@@ -12,7 +12,8 @@
     },
     "dependencies": {
         "@astrojs/svelte": "^2.0.1",
-        "astro": "^2.0.4",
+        "@astrojs/vercel": "^3.2.4",
+        "astro": "^2.3.0",
         "firebase": "^9.18.0",
         "svelte": "^3.54.0"
     }
