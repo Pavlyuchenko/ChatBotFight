@@ -295,6 +295,9 @@ import Layout from "../layouts/Layout.astro";
         grid-template-rows: 1fr;
 
         text-align: left;
+
+        padding: 0 20px;
+        box-sizing: border-box;
     }
     .answers {
         position: relative;
@@ -458,5 +461,27 @@ import Layout from "../layouts/Layout.astro";
         transform: translateX(-50%);
 
         padding: 10px 30px;
+    }
+
+    @media (max-width: 1000px) {
+        #bot-answers {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+            grid-row-gap: 90px;
+
+            padding: 0 20px;
+
+            box-sizing: border-box;
+
+            margin-bottom: 175px;
+        }
+        .answer-text {
+            min-height: 450px;
+            max-height: 450px;
+        }
+
+        h2 {
+            padding: 0 10px;
+        }
     }
 </style>

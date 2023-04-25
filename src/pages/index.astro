@@ -7,13 +7,13 @@ import Layout from "../layouts/Layout.astro";
     <main>
         <img src="gpt_vs_bard.png" alt="ChatGPT vs Bard" />
         <div class="hider-1">
-            <h1>Which AI model wrote which response?</h1>
+            <h1>Battle of the Bots: ChatGPT vs Bard</h1>
         </div>
         <div class="hider-2">
             <p>
-                Guess which AI model generated the response to a given prompt.
+                Guess which AI model generated the response to a given prompt,
                 <br />
-                Show the world how ChatBot-savvy you truly are!
+                or rate which AI model generated a better response!
             </p>
         </div>
 
@@ -35,9 +35,7 @@ import Layout from "../layouts/Layout.astro";
         </div>
     </main>
 </Layout>
-<section>
-    Test <br /> Test <br /> Test <br />Test <br /> Test <br /> Test <br /> Test v
-</section>
+<section></section>
 
 <style>
     :root {
@@ -115,5 +113,37 @@ import Layout from "../layouts/Layout.astro";
 
         animation: fadeIn 0.5s cubic-bezier(0.23, 0.03, 0, 1.46)
             calc(3 * var(--animation-speed));
+    }
+
+    @media (max-width: 800px) {
+        .flex {
+            padding: 0 20px;
+
+            gap: 15px;
+        }
+
+        .flex a {
+            font-size: 22px;
+
+            padding: 10px 15px;
+        }
+
+        h1 {
+            text-align: center;
+
+            padding: 0 5px;
+        }
+
+        p {
+            text-align: center;
+            padding: 0 15px;
+            font-size: 22px;
+        }
+    }
+
+    @media (max-width: 450px) {
+        .flex {
+            flex-direction: column;
+        }
     }
 </style>

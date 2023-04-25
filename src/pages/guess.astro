@@ -223,7 +223,7 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Guess the Chatbot | ChatBotFight">
     <main>
-        <p class="explanation-text">The Prompt</p>
+        <p class="explanation-text" id="the-prompt">The Prompt</p>
         <h2 id="prompt-text"></h2>
         <section id="bot-answers">
             <div class="answers">
@@ -247,7 +247,7 @@ import Layout from "../layouts/Layout.astro";
             <div class="answers">
                 <p class="explanation-text">Answer #2</p>
                 <div class="answer-text" id="bard-answer-data"></div>
-                <div class="chatbot-logo">
+                <div class="chatbot-logo" id="second-chatbot-logo">
                     <img
                         src="/bard.png"
                         alt="Bard logo"
@@ -330,6 +330,9 @@ import Layout from "../layouts/Layout.astro";
         grid-template-columns: 1fr 1fr;
         grid-column-gap: 100px;
         grid-template-rows: 1fr;
+
+        padding: 0 20px;
+        box-sizing: border-box;
 
         text-align: left;
     }
@@ -513,8 +516,7 @@ import Layout from "../layouts/Layout.astro";
     #explanation {
         position: absolute;
         top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
+        right: 20px;
         font-size: 22px;
     }
 
@@ -562,5 +564,102 @@ import Layout from "../layouts/Layout.astro";
     }
     .wrong-after::after {
         content: "Wrong!" !important;
+    }
+
+    @media (max-width: 1000px) {
+        #explanation {
+            font-size: 18px;
+
+            right: 0;
+
+            top: 60px;
+            box-sizing: border-box;
+            padding: 0 20px;
+            text-align: center;
+
+            width: 100%;
+        }
+
+        #bot-answers {
+            grid-template-columns: 1fr 1fr;
+
+            padding: 0 20px;
+            box-sizing: border-box;
+
+            gap: 30px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        #explanation {
+            font-size: 18px;
+
+            right: 0;
+
+            top: 65px;
+            box-sizing: border-box;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        #the-prompt {
+            margin-top: 60px;
+
+            font-weight: 500;
+        }
+
+        #prompt-text {
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        #bot-answers {
+            grid-template-columns: 1fr;
+
+            padding: 0 20px;
+            box-sizing: border-box;
+
+            gap: 30px;
+        }
+
+        .chatbot-logo {
+            position: absolute;
+
+            top: 100%;
+        }
+        .chatbot-logo {
+            left: 20px;
+            width: 33%;
+            height: 10px;
+        }
+        #second-chatbot-logo {
+            left: auto;
+            right: 20px;
+            width: 33%;
+            height: 10px;
+        }
+
+        .answers {
+            position: initial;
+        }
+
+        #switch-button::after {
+            content: "Change your choice";
+
+            font-size: 15px;
+            font-weight: 500;
+
+            top: calc(100% + 8px);
+        }
+
+        #make-guess {
+            width: calc(100% - 40px);
+
+            box-sizing: border-box;
+        }
+
+        .generated-by {
+            display: none !important;
+        }
     }
 </style>
